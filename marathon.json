@@ -1,0 +1,50 @@
+{
+  "id": "traefik",
+  "cmd": null,
+  "cpus": 1,
+  "mem": 128,
+  "disk": 0,
+  "instances": 3,
+  "container": {
+    "docker": {
+      "image": "drewkerrigan/traefik-mesos:latest",
+      "privileged": true
+    },
+    "type": "DOCKER",
+    "volumes": []
+  },
+  "networks": [
+    {
+      "mode": "host"
+    }
+  ],
+  "portDefinitions": [
+    {
+      "port": 80,
+      "protocol": "tcp",
+      "name": "web",
+      "labels": null
+    },
+    {
+      "port": 8081,
+      "protocol": "tcp",
+      "name": "api",
+      "labels": null
+    }
+  ],
+  "requirePorts": true,
+  "env": {
+    "LD_LIBRARY_PATH": "/opt/lgtonmc/apache/lib"
+  },
+  "labels": {},
+  "healthChecks": [],
+  "constraints": [
+    [
+      "hostname",
+      "UNIQUE"
+    ]
+  ],
+  "acceptedResourceRoles": [
+    "*"
+  ]
+}
