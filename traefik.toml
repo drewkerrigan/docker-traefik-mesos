@@ -1,112 +1,19 @@
-################################################################
-# Entrypoints configuration
-################################################################
-
 [entryPoints]
   [entryPoints.http]
     address = ":80"
-
-################################################################
-# Web configuration backend
-################################################################
-
 [web]
 address = ":8081"
-
-################################################################
-# Mesos configuration backend
-################################################################
-
-# Enable Mesos configuration backend.
 [mesos]
-
-# Mesos server endpoint.
-# You can also specify multiple endpoint for Mesos:
-# endpoint = "192.168.35.40:5050,192.168.35.41:5050,192.168.35.42:5050"
-# endpoint = "zk://192.168.35.20:2181,192.168.35.21:2181,192.168.35.22:2181/mesos"
-#
-# Required
-# Default: "http://127.0.0.1:5050"
-#
-# endpoint = "zk://leader.mesos:2181/mesos"
-endpoint = "leader.mesos:5050"
-
-# Enable watch Mesos changes.
-#
-# Optional
-# Default: true
-#
+endpoint = "zk://leader.mesos:2181/mesos"
 watch = true
-
-# Default domain used.
-# Can be overridden by setting the "traefik.domain" label on an application.
-#
-# Required
-#
 domain = "mesos.localhost"
-
-# Expose Mesos apps by default in Traefik.
-#
-# Optional
-# Default: true
-#
 exposedByDefault = false
-
-# Override default configuration template.
-# For advanced users :)
-#
-# Optional
-#
-# filename = "mesos.tmpl"
-
-# Override template version
-# For advanced users :)
-#
-# Optional
-# - "1": previous template version (must be used only with older custom templates, see "filename")
-# - "2": current template version (must be used to force template version when "filename" is used)
-#
-# templateVersion = 2
-
-# TLS client configuration. https://golang.org/pkg/crypto/tls/#Config
-#
-# Optional
-#
-# [mesos.TLS]
-# insecureSkipVerify = true
-
-# Zookeeper timeout (in seconds).
-#
-# Optional
-# Default: 30
-#
-# zkDetectionTimeout = 30
-
-# Polling interval (in seconds).
-#
-# Optional
-# Default: 30
-#
-# refreshSeconds = 30
-
-# IP sources (e.g. host, docker, mesos, netinfo).
-#
-# Optional
-#
-ipSources = "mesos,host,netinfo"
-
-# HTTP Timeout (in seconds).
-#
-# Optional
-# Default: 30
-#
-# stateTimeoutSecond = "30"
-
-# Convert groups to subdomains.
-# Default behavior: /foo/bar/myapp => foo-bar-myapp.{defaultDomain}
-# with groupsAsSubDomains enabled: /foo/bar/myapp => myapp.bar.foo.{defaultDomain}
-#
-# Optional
-# Default: false
-#
-# groupsAsSubDomains = true
+filename = "/mesos.tmpl"
+templateVersion = 2
+[mesos.TLS]
+insecureSkipVerify = true
+zkDetectionTimeout = 30
+refreshSeconds = 30
+ipSources = "netinfo,mesos,docker,host"
+stateTimeoutSecond = "30"
+groupsAsSubDomains = true

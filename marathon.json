@@ -1,6 +1,10 @@
 {
   "id": "traefik",
   "cmd": null,
+  "args": [
+    "--configfile", "/traefik.toml",
+    "--loglevel", "debug"
+  ],
   "cpus": 1,
   "mem": 128,
   "disk": 0,
