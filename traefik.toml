@@ -1,19 +1,108 @@
+defaultEntryPoints = ["http"]
+allowMinWeightZero = true
+
 [entryPoints]
   [entryPoints.http]
     address = ":80"
-[web]
-address = ":8081"
+  [entryPoints.https]
+    address = ":443"
+    [entryPoints.https.tls]
+      insecureSkipVerify = true
+  [entryPoints.eight081]
+    address = ":8081"
+  [entryPoints.eight082]
+    address = ":8082"
+  [entryPoints.eight083]
+    address = ":8083"
+  [entryPoints.eight084]
+    address = ":8084"
+  [entryPoints.eight085]
+    address = ":8085"
+  [entryPoints.eight086]
+    address = ":8086"
+  [entryPoints.eight087]
+    address = ":8087"
+  [entryPoints.eight088]
+    address = ":8088"
+  [entryPoints.eight089]
+    address = ":8089"
+  [entryPoints.eight090]
+    address = ":8090"
+  [entryPoints.eight091]
+    address = ":8091"
+  [entryPoints.eight092]
+    address = ":8090"
+  [entryPoints.eight093]
+    address = ":8090"
+  [entryPoints.eight094]
+    address = ":8090"
+  [entryPoints.eight095]
+    address = ":8090"
+  [entryPoints.eight096]
+    address = ":8090"
+  [entryPoints.eight097]
+    address = ":8090"
+  [entryPoints.eight098]
+    address = ":8090"
+  [entryPoints.eight099]
+    address = ":8090"
+  [entryPoints.eight100]
+    address = ":8100"
+  [entryPoints.nine082]
+    address = ":9082"
+  [entryPoints.nine083]
+    address = ":9083"
+  [entryPoints.nine084]
+    address = ":9084"
+  [entryPoints.nine085]
+    address = ":9085"
+  [entryPoints.nine086]
+    address = ":9086"
+  [entryPoints.nine087]
+    address = ":9087"
+  [entryPoints.nine088]
+    address = ":9088"
+  [entryPoints.nine089]
+    address = ":9089"
+  [entryPoints.nine090]
+    address = ":9090"
+  [entryPoints.nine091]
+    address = ":9091"
+  [entryPoints.nine092]
+    address = ":9090"
+  [entryPoints.nine093]
+    address = ":9090"
+  [entryPoints.nine094]
+    address = ":9090"
+  [entryPoints.nine095]
+    address = ":9090"
+  [entryPoints.nine096]
+    address = ":9090"
+  [entryPoints.nine097]
+    address = ":9090"
+  [entryPoints.nine098]
+    address = ":9090"
+  [entryPoints.nine099]
+    address = ":9090"
+  [entryPoints.nine100]
+    address = ":9100"
+[ping]
+  entryPoint = "eight081"
+[api]
+  entryPoint = "eight081"
+  dashboard = true
+  debug = false
 [mesos]
-endpoint = "zk://leader.mesos:2181/mesos"
-watch = true
-domain = "mesos.localhost"
-exposedByDefault = false
-filename = "/mesos.tmpl"
-templateVersion = 2
+  endpoint = "zk://leader.mesos:2181/mesos"
+  watch = true
+  domain = "mesos.localhost"
+  exposedByDefault = false
+  filename = "/mesos.tmpl"
+  templateVersion = 2
+  zkDetectionTimeout = 30
+  refreshSeconds = 30
+  ipSources = "host"
+  stateTimeoutSecond = 30
+  groupsAsSubDomains = true
 [mesos.TLS]
-insecureSkipVerify = true
-zkDetectionTimeout = 30
-refreshSeconds = 30
-ipSources = "netinfo,mesos,docker,host"
-stateTimeoutSecond = "30"
-groupsAsSubDomains = true
+  insecureSkipVerify = true

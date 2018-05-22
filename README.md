@@ -36,6 +36,8 @@ The following arguments are available by running `docker run -it drewkerrigan/tr
     --acme.entrypoint                          Entrypoint to proxy acme challenge to.
     --acme.httpchallenge                       Activate HTTP-01 Challenge                                                       (default "false")
     --acme.httpchallenge.entrypoint            HTTP challenge EntryPoint
+    --acme.keytype                             KeyType used for generating certificate private key. Allow value 'EC256',
+                                               'EC384', 'RSA2048', 'RSA4096', 'RSA8192'. Default to 'RSA4096'
     --acme.ondemand                            (Deprecated) Enable on demand certificate generation. This will request a        (default "false")
                                                certificate from Let's Encrypt during the first TLS handshake for a hostname
                                                that does not yet have a certificate.
@@ -255,6 +257,8 @@ The following arguments are available by running `docker run -it drewkerrigan/tr
     --maxidleconnsperhost                      If non-zero, controls the maximum idle (keep-alive) to keep per-host.  If zero,  (default "200")
                                                DefaultMaxIdleConnsPerHost is used
     --mesos                                    Enable Mesos backend with default settings                                       (default "true")
+    --mesos.cacertfile                         CA certificate to use to verify Mesos Master certificate
+    --mesos.certfile                           CA certificate to use to verify Mesos Master certificate
     --mesos.constraints                        Filter services by constraint, matching with Traefik tags.                       (default "[]")
     --mesos.debugloggeneratedtemplate          Enable debug logging of generated configuration template.                        (default "false")
     --mesos.domain                             Default domain used
@@ -262,8 +266,13 @@ The following arguments are available by running `docker run -it drewkerrigan/tr
     --mesos.exposedbydefault                   Expose Mesos apps by default                                                     (default "true")
     --mesos.filename                           Override default configuration template. For advanced users :)
     --mesos.groupsassubdomains                 Convert Mesos groups to subdomains                                               (default "false")
+    --mesos.httpson                            Communicate with Mesos using HTTPS if set to true                                (default "false")
+    --mesos.iamconfigfile                      IAM Config File
     --mesos.ipsources                          IPSources (e.g. host, docker, mesos, netinfo)
+    --mesos.keyfile                            Client certificate key to use
+    --mesos.principal                          Basic credenital principal for Mesos
     --mesos.refreshseconds                     Polling interval (in seconds)                                                    (default "30")
+    --mesos.secret                             Basic credenital secret for Mesos
     --mesos.statetimeoutsecond                 HTTP Timeout (in seconds)                                                        (default "30")
     --mesos.templateversion                    Template version.                                                                (default "0")
     --mesos.trace                              Display additional provider logs (if available).                                 (default "false")
@@ -393,4 +402,5 @@ The following arguments are available by running `docker run -it drewkerrigan/tr
     --zookeeper.trace                          Display additional provider logs (if available).                                 (default "false")
     --zookeeper.username                       KV Username
     --zookeeper.watch                          Watch provider                                                                   (default "true")
+-h, --help                                     Print Help (this message) and exit
 ```

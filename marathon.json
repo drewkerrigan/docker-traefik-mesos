@@ -1,54 +1,52 @@
 {
-  "id": "traefik",
+  "id": "/traefik",
   "cmd": null,
-  "args": [
-    "--configfile", "/traefik.toml",
-    "--loglevel", "debug"
-  ],
   "cpus": 1,
   "mem": 128,
   "disk": 0,
   "instances": 3,
-  "container": {
-    "docker": {
-      "image": "drewkerrigan/traefik-mesos:latest",
-      "privileged": true
-    },
-    "type": "DOCKER",
-    "volumes": []
-  },
-  "networks": [
-    {
-      "mode": "host"
-    }
+  "acceptedResourceRoles": [
+    "*"
   ],
-  "portDefinitions": [
-    {
-      "port": 80,
-      "protocol": "tcp",
-      "name": "web",
-      "labels": null
-    },
-    {
-      "port": 8081,
-      "protocol": "tcp",
-      "name": "api",
-      "labels": null
-    }
+  "args": [
+    "--configfile=/traefik.toml",
+    "--loglevel=debug"
   ],
-  "requirePorts": true,
-  "env": {
-    "LD_LIBRARY_PATH": "/opt/lgtonmc/apache/lib"
-  },
-  "labels": {},
-  "healthChecks": [],
   "constraints": [
     [
       "hostname",
       "UNIQUE"
     ]
   ],
-  "acceptedResourceRoles": [
-    "*"
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "forcePullImage": true,
+      "image": "drewkerrigan/traefik-mesos:latest",
+      "parameters": [],
+      "privileged": true
+    },
+    "volumes": []
+  },
+  "env": {
+    "LD_LIBRARY_PATH": "/opt/lgtonmc/apache/lib"
+  },
+  "portDefinitions": [
+    {
+      "port": 80,
+      "name": "web",
+      "protocol": "tcp"
+    },
+    {
+      "port": 8081,
+      "name": "api",
+      "protocol": "tcp"
+    }
+  ],
+  "requirePorts": true,
+  "networks": [
+    {
+      "mode": "host"
+    }
   ]
 }
